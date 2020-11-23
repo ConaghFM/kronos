@@ -1,8 +1,10 @@
 from gpiozero import *
 from time import *
+from numpy import *
+
 positive = LED(17) # Board 11
 negative = LED(27) # Board 13
-cycleLength = 1
+cycleLength = 1 # Tick length in seconds
 
 while(true)
     positive.on()
@@ -13,16 +15,20 @@ while(true)
     negative.off()
     if(cycleLength-0.02 > 0) # check this time is not negative
         sleep(cycleLength-0.02)
-    cycleLength = timeFunction(cycleLength)
+    cycleLength = timeFunction()
 
+# keep this format, and just change squared() for your math function
+# this keeps the rate at 1 if the function just returns the current number of seconds
 def timeFunction(cycleLength):
-    return squared()
+    seconds = getSeconds
+    return seconds/squared(seconds)
 
-# squared returns the fraction of a second the tick (cycleLength) should take
 # this will reach our 20ms limit after about 50 seconds
-def squared():
-    seconds = getSeconds()
-    return seconds/(seconds**2)
+def squared(seconds):
+    return seconds**2
+
+def logged(seconds):
+    return numpy.log(seconds)
 
 # Seconds since 00:00 on the clock
 def getSeconds():
