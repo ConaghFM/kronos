@@ -6,7 +6,6 @@ POSITIVE = LED(17) # Board 11
 NEGATIVE = LED(27) # Board 13
 SLEEP_TIME = 0.01 # 10 ms
 clockStart = time.time() # seconds since the clock started, as a float
-lastTime = 0 # the last time timeFunction executed, as a float
 cycleLength = 1 # Tick length in seconds
 
 while(true)
@@ -22,10 +21,12 @@ while(true)
 
 # keep this format 1/(func(seconds) - func(seconds-cycleLength)), and just change out the math function
 # returns the fraction of a second each tick should last
-def timeFunction(cycleLength):
+def timeFunction():
     seconds = getSeconds()
-    frequency = squared(seconds) - squared(lastTime) # the tick frequency in Hz
-    lastTime = seconds
+    if (seconds < 1): # avoid feeding negative times to the math functions
+        frequency = 1
+    else:
+        frequency = squared(seconds) - squared(seconds-1) # the tick frequency in Hz
     return 1/frequency
 
 # this will reach our 20ms limit very quickly
@@ -39,7 +40,6 @@ def logged(seconds):
 def getSeconds():
     if ((time.time() - clockStart) > 43200): # reset every 12 hours
         clockStart = time.time()
-        lastTime = 0
         return 0
     else:
         return time.time() - clockStart
