@@ -1,6 +1,6 @@
 from gpiozero import * # https://gpiozero.readthedocs.io/en/stable/recipes.html
-from time import *
-from numpy import *
+from time import * # https://docs.python.org/3/library/time.html
+from numpy import * # https://numpy.org/doc/
 
 POSITIVE = LED(17) # Board 11
 NEGATIVE = LED(27) # Board 13
