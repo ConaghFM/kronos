@@ -5,7 +5,7 @@ from numpy import * # https://numpy.org/doc/
 POSITIVE = LED(17) # Board 11
 NEGATIVE = LED(27) # Board 13
 SLEEP_TIME = 0.01 # 10 ms
-clockStart = time.time() # seconds since the clock started, as a float
+clockStart = time() # seconds since the clock started, as a float
 cycleLength = 1 # Tick length in seconds
 
 while True:
@@ -34,12 +34,12 @@ def squared(seconds):
     return seconds**2
 
 def logged(seconds):
-    return numpy.log(seconds)
+    return nlog(seconds)
 
 # Seconds since 00:00 on the clock as a float
 def getSeconds():
     if time.time() - clockStart > 43200 : # reset every 12 hours
-        clockStart = time.time()
+        clockStart = time()
         return 0
     else:
-        return time.time() - clockStart
+        return time() - clockStart
