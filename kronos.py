@@ -41,7 +41,7 @@ while True:
     sleep(SLEEP_TIME)
     POSITIVE.off()
     NEGATIVE.on()
-    sleep(SLEEP_TIME/2)
+    sleep(SLEEP_TIME)
     NEGATIVE.off()
     if cycleLength - (2*SLEEP_TIME) > 0 : # check this time is not NEGATIVE
         sleep(cycleLength - (2*SLEEP_TIME))
