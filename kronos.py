@@ -43,8 +43,9 @@ def getSeconds():
 while True:
     NEGATIVE.off()
     POSITIVE.on()
-    sleep(SLEEP_TIME)
+    sleep(SLEEP_TIME*3/4)
     POSITIVE.off()
+    sleep(SLEEP_TIME/4)
     NEGATIVE.on()
     sleep(cycleLength - SLEEP_TIME)
     cycleLength = timeFunction()
