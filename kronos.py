@@ -15,7 +15,7 @@ def timeFunction():
     if seconds < 1 : # avoid feeding negative times to the math functions
         frequency = 1
     else:
-        frequency = squared(seconds) - squared(seconds-1) # the tick frequency in Hz
+        frequency = factor(seconds) - factor(seconds-1) # the tick frequency in Hz
     return 1/frequency
 
 # this will reach our 20ms limit very quickly
@@ -26,7 +26,7 @@ def logged(seconds):
     return log(seconds)
 
 def factor(seconds):
-    FACTOR = 3
+    FACTOR = 2
     return FACTOR*seconds
 
 # Seconds since 00:00 on the clock as a float
