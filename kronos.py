@@ -30,7 +30,7 @@ def factor(seconds):
     return FACTOR*seconds
 
 def sine(seconds):
-    return sin(seconds)
+    return 1 + sin(seconds)
 
 # Seconds since 00:00 on the clock as a float
 def getSeconds():
