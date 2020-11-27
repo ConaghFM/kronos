@@ -8,17 +8,6 @@ SLEEP_TIME = 0.01 # 10 ms
 clockStart = time() # seconds since the clock started, as a float
 cycleLength = 1 # Tick length in seconds
 
-while True:
-    POSITIVE.on()
-    sleep(SLEEP_TIME)
-    POSITIVE.off()
-    NEGATIVE.on()
-    sleep(SLEEP_TIME)
-    NEGATIVE.off()
-    if cycleLength - (2*SLEEP_TIME) > 0 : # check this time is not NEGATIVE
-        sleep(cycleLength - (2*SLEEP_TIME))
-    cycleLength = timeFunction()
-
 # keep this format 1/(func(seconds) - func(seconds-cycleLength)), and just change out the math function
 # returns the fraction of a second each tick should last
 def timeFunction():
@@ -43,3 +32,16 @@ def getSeconds():
         return 0
     else:
         return time() - clockStart
+
+
+### Runtime loop ###
+while True:
+    POSITIVE.on()
+    sleep(SLEEP_TIME)
+    POSITIVE.off()
+    NEGATIVE.on()
+    sleep(SLEEP_TIME)
+    NEGATIVE.off()
+    if cycleLength - (2*SLEEP_TIME) > 0 : # check this time is not NEGATIVE
+        sleep(cycleLength - (2*SLEEP_TIME))
+    cycleLength = timeFunction()
