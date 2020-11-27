@@ -4,7 +4,7 @@ from numpy import * # https://numpy.org/doc/
 
 POSITIVE = LED(17) # Board 11
 NEGATIVE = LED(27) # Board 13
-SLEEP_TIME = 0.012 # 10 ms
+SLEEP_TIME = 0.013 # 10 ms
 clockStart = time() # seconds since the clock started, as a float
 cycleLength = 1 # Tick length in seconds
 
@@ -15,7 +15,7 @@ def timeFunction():
     if seconds < 1 : # avoid feeding negative times to the math functions
         frequency = 1
     else:
-        frequency = log(seconds) - log(seconds-1) # the tick frequency in Hz
+        frequency = factor(seconds) - factor(seconds-1) # the tick frequency in Hz
     return 1/frequency
 
 # this will reach our 20ms limit very quickly
@@ -24,6 +24,10 @@ def squared(seconds):
 
 def logged(seconds):
     return log(seconds)
+
+def factor(seconds):
+    FACTOR = 1
+    return FACTOR*seconds
 
 # Seconds since 00:00 on the clock as a float
 def getSeconds():
