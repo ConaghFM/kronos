@@ -23,7 +23,7 @@ def squared(seconds):
     return seconds**2
 
 def logged(seconds):
-    return nlog(seconds)
+    return log(seconds)
 
 # Seconds since 00:00 on the clock as a float
 def getSeconds():
@@ -41,7 +41,7 @@ while True:
     sleep(SLEEP_TIME)
     POSITIVE.off()
     NEGATIVE.on()
-    sleep(SLEEP_TIME)
+    sleep(SLEEP_TIME/2)
     NEGATIVE.off()
     if cycleLength - (2*SLEEP_TIME) > 0 : # check this time is not NEGATIVE
         sleep(cycleLength - (2*SLEEP_TIME))
