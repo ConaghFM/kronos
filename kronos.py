@@ -15,7 +15,7 @@ def timeFunction():
     if seconds < 1 : # avoid feeding negative times to the math functions
         frequency = 1
     else:
-        frequency = sine(seconds) - sine(seconds-1) # the tick frequency in Hz
+        frequency = squared(seconds) - squared(seconds-1) # the tick frequency in Hz
     return 1/frequency
 
 # this will reach our 20ms limit very quickly
