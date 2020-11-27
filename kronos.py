@@ -30,7 +30,7 @@ def factor(seconds):
     return FACTOR*seconds
 
 def sine(seconds):
-    return 2 + sin(seconds)
+    return 1.1 + sin(seconds)
 
 # Seconds since 00:00 on the clock as a float
 def getSeconds():
@@ -50,5 +50,8 @@ while True:
     POSITIVE.off()
     sleep(SLEEP_TIME/4)
     NEGATIVE.on()
-    sleep(cycleLength - SLEEP_TIME)
+    if (cycleLength - SLEEP_TIME) < 0 :
+        sleep(SLEEP_TIME)
+    else:
+        sleep(cycleLength - SLEEP_TIME)
     cycleLength = timeFunction()
