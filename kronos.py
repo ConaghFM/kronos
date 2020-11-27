@@ -27,7 +27,7 @@ def logged(seconds):
 
 # Seconds since 00:00 on the clock as a float
 def getSeconds():
-    if time.time() - clockStart > 43200 : # reset every 12 hours
+    if time() - clockStart > 43200 : # reset every 12 hours
         clockStart = time()
         return 0
     else:
