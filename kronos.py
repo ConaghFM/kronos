@@ -41,12 +41,11 @@ def getSeconds():
 
 ### Runtime loop ###
 while True:
+    NEGATIVE.off()
     POSITIVE.on()
     sleep(SLEEP_TIME)
     POSITIVE.off()
     NEGATIVE.on()
-    sleep(SLEEP_TIME)
-    NEGATIVE.off()
-    if cycleLength - (2*SLEEP_TIME) > 0 : # check this time is not NEGATIVE
-        sleep(cycleLength - (2*SLEEP_TIME))
+    if cycleLength - SLEEP_TIME > 0 : # check this time is not NEGATIVE
+        sleep(cycleLength - SLEEP_TIME)
     cycleLength = timeFunction()
