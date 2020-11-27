@@ -4,7 +4,7 @@ from numpy import * # https://numpy.org/doc/
 
 NEGATIVE = LED(17) # Board 11
 POSITIVE = LED(27) # Board 13
-SLEEP_TIME = 0.02 # 10 ms
+SLEEP_TIME = 0.016 # 10 ms
 clockStart = time() # seconds since the clock started, as a float
 cycleLength = 1 # Tick length in seconds
 
@@ -26,7 +26,7 @@ def logged(seconds):
     return log(seconds)
 
 def factor(seconds):
-    FACTOR = 2
+    FACTOR = 1
     return FACTOR*seconds
 
 # Seconds since 00:00 on the clock as a float
