@@ -44,10 +44,10 @@ while True:
     POSITIVE.on()
     sleep(SLEEP_TIME)
     POSITIVE.off()
-    sleep(SLEEP_TIME)
+    sleep(SLEEP_TIME/3)
     NEGATIVE.on()
-    sleep(SLEEP_TIME)
+    sleep(SLEEP_TIME*2/3)
     NEGATIVE.off()
-    if cycleLength - (2.5*SLEEP_TIME) > 0 : # check this time is not NEGATIVE
-        sleep(cycleLength - (2.5*SLEEP_TIME))
+    if cycleLength - (2*SLEEP_TIME) > 0 : # check this time is not NEGATIVE
+        sleep(cycleLength - (2*SLEEP_TIME))
     cycleLength = timeFunction()
