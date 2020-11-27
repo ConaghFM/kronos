@@ -42,7 +42,7 @@ def getSeconds():
 ### Runtime loop ###
 while True:
     POSITIVE.on()
-    sleep(SLEEP_TIME*2/3)
+    sleep(SLEEP_TIME)
     POSITIVE.off()
 #    NEGATIVE.on()
 #    sleep(SLEEP_TIME)
