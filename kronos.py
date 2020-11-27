@@ -41,7 +41,6 @@ def getSeconds():
 
 ### Runtime loop ###
 while True:
-    global SLEEP_TIME
     if SLEEP_TIME < cycleLength/2 :
         SLEEP_TIME = cycleLength/2
     NEGATIVE.off()
