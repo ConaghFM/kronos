@@ -7,39 +7,46 @@ POSITIVE = LED(27) # Board 13
 SLEEP_TIME = 0.017 # 10 ms
 clockStart = time() # seconds since the clock started, as a float
 cycleLength = 1 # Tick length in seconds
+SOFT_START = false
 
-# keep this format 1/(func(seconds) - func(seconds-cycleLength)), and just change out the math function
+# keep this format 1/(func(hours) - func(hours-cycleLength)), and just change out the math function
 # returns the fraction of a second each tick should last
 def timeFunction():
-    seconds = getSeconds()
-    if seconds < 1 : # avoid feeding negative times to the math functions
-        frequency = 1
+    hours = getHours()
+    if hours < 0 : # avoid feeding negative times to the math functions
+        return 1
     else:
-        frequency = squared(seconds) - squared(seconds-1) # the tick frequency in Hz
+        frequency = logged(hours) - logged(hours-(1/3600)) # the tick frequency in Hz
     return 1/frequency
 
 # this will reach our 20ms limit very quickly
-def squared(seconds):
-    return seconds**2
+def squared(hours):
+    if SOFT_START and hours < 1: # normal time for the first hour
+        return 1
+    else:
+        return (hours)**2
 
-def logged(seconds):
-    return log(seconds)
+def logged(hours):
+    if SOFT_START and hours < 1: # normal time for the first hour
+        return 1
+    else:
+        return log(hours)
 
-def factor(seconds):
+def factor(hours):
     FACTOR = 1
-    return FACTOR*seconds
+    return FACTOR*hours
 
-def sine(seconds):
-    return 1.1 + sin(seconds)
+def sine(hours):
+    return hours*(1 + sin(hours))
 
 # Seconds since 00:00 on the clock as a float
-def getSeconds():
+def getHours():
     global clockStart
     if time() - clockStart > 43200 : # reset every 12 hours
         clockStart = time()
         return 0
     else:
-        return time() - clockStart
+        return (time() - clockStart)/3600
 
 
 ### Runtime loop ###
